@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watts Organic Farm | Fresh. Organic. Naturally Grown.</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'farm-green': '#2F4F2F',      /* Deep Forest Green */
+                        'farm-light': '#557C55',      /* Muted Green */
+                        'earth-brown': '#8B5A2B',     /* Warm Brown */
+                        'cream': '#F9F7F2',           /* Off-white background */
+                        'soft-white': '#FFFFFF',
+                        'accent-orange': '#D97706',   /* Muted Orange for CTAs */
+                        'slate-text': '#334155'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem', 
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling and custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F9F7F2; }
+        ::-webkit-scrollbar-thumb { background: #557C55; border-radius: 4px; }
+        
+        /* Subtle texture for background */
+        .texture-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232F4F2F' fill-opacity='0.03'%3E%3Cpath d='M0 0h20L0 20z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Soft Fade In Animation */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Animation for Badge */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-cream font-sans text-slate-text antialiased texture-pattern">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="bg-farm-green text-white p-2 rounded-full mr-3 group-hover:bg-farm-light transition-colors">
+                        <i data-lucide="sprout" class="h-6 w-6"></i>
+                    </div>
+                    <span class="font-serif text-2xl font-bold text-farm-green tracking-tight">Watts Organic</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-slate-600 hover:text-farm-green font-medium transition-colors">About</a>
+                    <a href="#products" class="text-slate-600 hover:text-farm-green font-medium transition-colors">Produce</a>
+                    <a href="#story" class="text-slate-600 hover:text-farm-green font-medium transition-colors">Our Story</a>
+                    <a href="#testimonials" class="text-slate-600 hover:text-farm-green font-medium transition-colors">Reviews</a>
+                    <a href="#contact" class="bg-farm-green hover:bg-farm-light text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Visit Us
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-farm-green p-2 rounded-md hover:bg-green-50">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="#about" class="block px-4 py-3 rounded-xl hover:bg-green-50 text-base font-medium text-slate-700">About the Farm</a>
+                <a href="#products" class="block px-4 py-3 rounded-xl hover:bg-green-50 text-base font-medium text-slate-700">Produce</a>
+                <a href="#story" class="block px-4 py-3 rounded-xl hover:bg-green-50 text-base font-medium text-slate-700">Farm Story</a>
+                <a href="#testimonials" class="block px-4 py-3 rounded-xl hover:bg-green-50 text-base font-medium text-slate-700">Testimonials</a>
+                <a href="#contact" class="block px-4 py-3 rounded-xl bg-farm-green text-white text-base font-bold text-center mt-4">Visit Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-farm-green pt-16 pb-0 lg:pt-24 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 40px 40px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+            
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-green-100 text-sm font-bold tracking-wider uppercase mb-8 animate-fade-in-up">
+                <i data-lucide="sprout" class="w-4 h-4"></i>
+                Sustainable Farming Since 1985
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight max-w-4xl drop-shadow-sm fade-in-up">
+                Nourishing Communities with <br/>
+                <span class="text-green-300 italic">Real, Organic Food.</span>
+            </h1>
+
+            <!-- Subtext -->
+            <p class="text-xl text-green-50 mb-10 max-w-2xl leading-relaxed font-light fade-in-up" style="animation-delay: 0.2s;">
+                From our regenerative fields to your kitchen table. Experience the true taste of nature with our seasonal harvest boxes.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-16 fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#products" class="px-8 py-4 bg-accent-orange hover:bg-orange-600 text-white font-bold text-lg rounded-full shadow-lg transition-all transform hover:scale-105 flex items-center justify-center">
+                    Start Your Order <i data-lucide="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+                <a href="#about" class="px-8 py-4 bg-transparent border-2 border-white/30 hover:bg-white/10 text-white font-bold text-lg rounded-full transition-all flex items-center justify-center">
+                    View Our Farm
+                </a>
+            </div>
+
+            <!-- Hero Image Composition (Bottom Anchored) -->
+            <div class="relative w-full max-w-5xl fade-in-up" style="animation-delay: 0.6s;">
+                <!-- Floating Elements -->
+                <div class="absolute -top-12 -left-12 hidden lg:block animate-float">
+                    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=200&q=80" class="w-24 h-24 rounded-full border-4 border-white/20 object-cover shadow-xl" alt="Vegetable">
+                </div>
+                <div class="absolute -top-8 -right-8 hidden lg:block animate-float" style="animation-delay: 2s;">
+                    <img src="https://images.unsplash.com/photo-1601648764658-cf37e8c07b70?auto=format&fit=crop&w=200&q=80" class="w-20 h-20 rounded-full border-4 border-white/20 object-cover shadow-xl" alt="Fruit">
+                </div>
+
+                <!-- Main Image -->
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                     alt="Farmer holding fresh produce box" 
+                     class="rounded-t-3xl shadow-2xl border-t-8 border-x-8 border-white/10 w-full object-cover h-[400px] md:h-[500px]">
+            </div>
+        </div>
+
+        <!-- Curve Divider to blend with next section -->
+        <div class="absolute bottom-0 left-0 right-0">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" class="w-full h-auto text-cream fill-current">
+                <path d="M0,32L60,37.3C120,43,240,53,360,58.7C480,64,600,64,720,53.3C840,43,960,21,1080,16C1200,11,1320,21,1380,26.7L1440,32L1440,80L1380,80C1320,80,1200,80,1080,80C960,80,840,80,720,80C600,80,480,80,360,80C240,80,120,80,60,80L0,80Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- About The Farm Section -->
+    <section id="about" class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image Grid -->
+                <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Farmer hands" class="rounded-3xl shadow-lg w-full h-64 object-cover mt-12 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Green field" class="rounded-3xl shadow-lg w-full h-64 object-cover transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                </div>
+                
+                <!-- Content -->
+                <div class="lg:w-1/2">
+                    <div class="inline-flex items-center space-x-2 text-farm-green font-bold uppercase tracking-widest text-sm mb-4">
+                        <span class="w-8 h-[2px] bg-farm-green"></span>
+                        <span>Sustainability First</span>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-farm-green mb-6 leading-tight">
+                        Cultivating with <br>Respect for Nature
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                        At Watts Organic Farm, we believe that healthy soil grows healthy food. Our 50-acre family farm uses regenerative agricultural practices that restore biodiversity and sequester carbon.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <div class="bg-green-100 p-1 rounded-full text-farm-green mr-3 mt-1">
+                                <i data-lucide="leaf" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-slate-700">100% Certified Organic (No synthetic pesticides)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-100 p-1 rounded-full text-farm-green mr-3 mt-1">
+                                <i data-lucide="droplets" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-slate-700">Water conservation through drip irrigation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-100 p-1 rounded-full text-farm-green mr-3 mt-1">
+                                <i data-lucide="sun" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-slate-700">Solar-powered greenhouses and facilities</span>
+                        </li>
+                    </ul>
+
+                    <button class="text-earth-brown font-bold text-lg border-b-2 border-earth-brown pb-1 hover:text-orange-700 hover:border-orange-700 transition-all">
+                        Learn more about our methods
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-accent-orange font-bold tracking-widest uppercase text-sm">Seasonal Harvest</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-farm-green mt-3 mb-4">Fresh From The Field</h2>
+                <p class="text-slate-500 text-lg">Picked at peak ripeness to ensure maximum nutrition and flavor.</p>
+            </div>
+
+            <!-- Filter Tabs (Visual Only) -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="px-6 py-2 rounded-full bg-farm-green text-white font-medium shadow-md">All Produce</button>
+                <button class="px-6 py-2 rounded-full bg-cream text-slate-600 hover:bg-green-50 font-medium transition-colors">Vegetables</button>
+                <button class="px-6 py-2 rounded-full bg-cream text-slate-600 hover:bg-green-50 font-medium transition-colors">Fruits</button>
+                <button class="px-6 py-2 rounded-full bg-cream text-slate-600 hover:bg-green-50 font-medium transition-colors">Herbs</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Item 1 -->
+                <div class="group bg-cream rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" alt="Carrots">
+                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-bold text-farm-green shadow-sm">Organic</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-1">Heirloom Carrots</h3>
+                        <p class="text-slate-500 text-sm mb-4">Sweet, crunchy, and vibrant.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-lg text-farm-green">$3.50/lb</span>
+                            <button class="bg-white p-2 rounded-full shadow hover:bg-farm-green hover:text-white transition-colors text-farm-green">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="group bg-cream rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" alt="Potatoes">
+                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-bold text-farm-green shadow-sm">New Arrival</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-1">Russet Potatoes</h3>
+                        <p class="text-slate-500 text-sm mb-4">Earthy flavor, perfect for roasting.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-lg text-farm-green">$2.00/lb</span>
+                            <button class="bg-white p-2 rounded-full shadow hover:bg-farm-green hover:text-white transition-colors text-farm-green">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="group bg-cream rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1524593166156-312f3dd5d9e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" alt="Tomatoes">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-1">Vine Tomatoes</h3>
+                        <p class="text-slate-500 text-sm mb-4">Juicy, sun-ripened perfection.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-lg text-farm-green">$4.50/lb</span>
+                            <button class="bg-white p-2 rounded-full shadow hover:bg-farm-green hover:text-white transition-colors text-farm-green">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="group bg-cream rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" alt="Basil">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-1">Fresh Basil</h3>
+                        <p class="text-slate-500 text-sm mb-4">Aromatic and freshly cut.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-lg text-farm-green">$2.50/bu</span>
+                            <button class="bg-white p-2 rounded-full shadow hover:bg-farm-green hover:text-white transition-colors text-farm-green">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-flex items-center justify-center px-8 py-3 border-2 border-farm-green text-farm-green font-bold rounded-full hover:bg-farm-green hover:text-white transition-all">
+                    View Full Catalog <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farm to Table Story (Process) -->
+    <section id="story" class="py-20 bg-farm-green text-cream relative">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-accent-orange font-bold tracking-widest uppercase text-sm">Our Process</span>
+                <h2 class="text-4xl font-serif font-bold text-white mt-3">From Soil to Soul</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-white/20 -z-10 w-3/4 mx-auto"></div>
+
+                <!-- Step 1 -->
+                <div class="group">
+                    <div class="bg-cream w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="sprout" class="w-10 h-10 text-farm-green"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold mb-2">1. We Plant</h3>
+                    <p class="text-green-100 text-sm px-4">Using organic heirloom seeds and nutrient-rich compost.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="group">
+                    <div class="bg-cream w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="sun" class="w-10 h-10 text-accent-orange"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold mb-2">2. Nature Grows</h3>
+                    <p class="text-green-100 text-sm px-4">Nurtured by rain, sun, and attentive care, without chemicals.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="group">
+                    <div class="bg-cream w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="shovel" class="w-10 h-10 text-earth-brown"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold mb-2">3. Daily Harvest</h3>
+                    <p class="text-green-100 text-sm px-4">Picked by hand every morning at the peak of freshness.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="group">
+                    <div class="bg-cream w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="truck" class="w-10 h-10 text-slate-700"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold mb-2">4. To Your Door</h3>
+                    <p class="text-green-100 text-sm px-4">Delivered to local markets or directly to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif font-bold text-farm-green">Community Love</h2>
+                <div class="w-20 h-1 bg-accent-orange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                    <i data-lucide="quote" class="w-10 h-10 text-green-100 absolute top-4 right-4 fill-current"></i>
+                    <div class="flex text-accent-orange mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic">"I've never tasted strawberries this sweet. Knowing exactly where my food comes from gives me such peace of mind. The CSA box is the highlight of my week!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">EM</div>
+                        <div class="ml-3">
+                            <p class="font-bold text-farm-green">Emily M.</p>
+                            <p class="text-xs text-slate-400">Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-farm-green relative transform md:-translate-y-4">
+                    <i data-lucide="quote" class="w-10 h-10 text-green-100 absolute top-4 right-4 fill-current"></i>
+                    <div class="flex text-accent-orange mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic">"Watts Organic Farm isn't just a business; they are a pillar of our community. Their commitment to sustainable farming is truly inspiring."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">RJ</div>
+                        <div class="ml-3">
+                            <p class="font-bold text-farm-green">Robert J.</p>
+                            <p class="text-xs text-slate-400">Local Chef</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                    <i data-lucide="quote" class="w-10 h-10 text-green-100 absolute top-4 right-4 fill-current"></i>
+                    <div class="flex text-accent-orange mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic">"The weekly delivery is always punctual and the produce is spotless. It feels great to support a family-owned business instead of a chain."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">SC</div>
+                        <div class="ml-3">
+                            <p class="font-bold text-farm-green">Sarah C.</p>
+                            <p class="text-xs text-slate-400">CSA Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit & Contact -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-3xl bg-cream overflow-hidden shadow-lg border border-gray-100">
+                <div class="flex flex-col md:flex-row">
+                    <!-- Info -->
+                    <div class="md:w-1/2 p-10 md:p-14">
+                        <h2 class="text-3xl font-serif font-bold text-farm-green mb-6">Come Visit The Farm</h2>
+                        <p class="text-slate-600 mb-8">
+                            We love visitors! Stop by our farm stand to pick up fresh goods, or join us for a weekend tour.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white p-3 rounded-full shadow-sm text-accent-orange mr-4">
+                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-farm-green">Address</h4>
+                                    <p class="text-slate-600">8420 Meadow Lane,<br>Green Valley, OR 97000</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white p-3 rounded-full shadow-sm text-accent-orange mr-4">
+                                    <i data-lucide="clock" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-farm-green">Farm Stand Hours</h4>
+                                    <p class="text-slate-600">Mon - Fri: 8am - 6pm<br>Sat - Sun: 9am - 4pm</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white p-3 rounded-full shadow-sm text-accent-orange mr-4">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-farm-green">Contact</h4>
+                                    <p class="text-slate-600">(555) 123-4567<br>hello@wattsorganic.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Placeholder -->
+                    <div class="md:w-1/2 bg-gray-200 relative min-h-[300px]">
+                        <img src="https://images.unsplash.com/photo-1596711718041-8600b414a93c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover opacity-80" alt="Farm Aerial View">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button class="bg-white text-farm-green font-bold py-3 px-6 rounded-full shadow-xl hover:bg-gray-50 flex items-center">
+                                <i data-lucide="map" class="w-5 h-5 mr-2"></i> Get Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-farm-green text-white pt-16 pb-8 border-t border-green-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1">
+                    <div class="flex items-center mb-6">
+                        <i data-lucide="sprout" class="h-8 w-8 text-green-300 mr-2"></i>
+                        <span class="font-serif text-2xl font-bold">Watts Organic</span>
+                    </div>
+                    <p class="text-green-100 text-sm leading-relaxed mb-6">
+                        Cultivating organic goodness for our community since 1985. Sustainable, fresh, and family-owned.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="p-2 bg-green-900 rounded-full hover:bg-accent-orange transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="p-2 bg-green-900 rounded-full hover:bg-accent-orange transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="p-2 bg-green-900 rounded-full hover:bg-accent-orange transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-serif text-green-100">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-green-200/80">
+                        <li><a href="#about" class="hover:text-white hover:pl-1 transition-all">Our Story</a></li>
+                        <li><a href="#products" class="hover:text-white hover:pl-1 transition-all">Shop Produce</a></li>
+                        <li><a href="#" class="hover:text-white hover:pl-1 transition-all">Wholesale</a></li>
+                        <li><a href="#contact" class="hover:text-white hover:pl-1 transition-all">Visit Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="text-lg font-bold mb-4 font-serif text-green-100">Join the Harvest</h4>
+                    <p class="text-green-200/80 text-sm mb-4">Subscribe for seasonal updates, recipes, and exclusive offers.</p>
+                    <form class="flex flex-col sm:flex-row gap-2">
+                        <input type="email" placeholder="Your email address" class="flex-grow bg-green-900/50 border border-green-700 text-white px-5 py-3 rounded-full focus:outline-none focus:border-accent-orange transition-colors">
+                        <button class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-green-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-green-400/60">
+                <p>&copy; 2024 Watts Organic Farm. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            const icon = menu.classList.contains('hidden') ? 'menu' : 'x';
+            // Simple toggle logic for icon could go here
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.add('bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
